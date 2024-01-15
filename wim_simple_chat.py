@@ -3,6 +3,8 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
 from wim_model import ask_wim_model
+import json
+import random
 # from wim_model_using_bert import ask_wim_model
 
 nltk.download('punkt')
@@ -20,14 +22,19 @@ def configure_chat():
         "Is your hair color blue?":"Yes",
         "Are your eyes brown?": "No"
     }
-
     chatbot['responses'] = responses
-    # me falta resolverlo
-    chatbot['my_character'] = {
-        "eye_color": "blue",
-        "face_color": "black",
-        "hair_color": "blue"
-    }
+
+    # Ruta a donde estan todos mis characters
+    json_file_path = 'all_my_characters.json'
+    with open(json_file_path, 'r') as json_file:
+        data = json.load(json_file)
+
+    # Seleccionar un personaje aleatorio del diccionario
+    random_element = random.choice(list(data.keys()))
+    print(random_element)
+    print(data[random_element])
+    chatbot['my_character'] = random_element
+    chatbot['my_character_attributes'] = data[random_element]
 
     return chatbot
 
