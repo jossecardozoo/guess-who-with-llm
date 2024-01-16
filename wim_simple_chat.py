@@ -38,7 +38,7 @@ def configure_chat():
 
     return chatbot
 
-# preprocesar la pregunta para que me quede todo como un conjunto de palabras
+# preprocesar la pregunta para que me quede todo como un conjunto de palabras -> CAPAZ NO ES NECESARIO HACERLO
 def preprocess_text(question):
     # Tokenizar
     words = word_tokenize(question.lower())
@@ -57,11 +57,6 @@ def preprocess_text(question):
 def search_response(chatbot, question):
     processed_question = preprocess_text(question)
     print(processed_question)
-
-    # Buscar la respuesta, borrar esto luego de que tenga el modelo entrenado
-    # for key, value in chatbot['responses'].items():
-    #     if preprocess_text(key) == processed_question:
-    #         return value
 
     # Le pregunto a mi modelo si es correcta o no la pregunta en funcion de mi personaje elegido
     return ask_model_for_this(question, chatbot)
