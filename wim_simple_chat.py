@@ -2,10 +2,9 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
-from wim_model import ask_wim_model
 import json
 import random
-# from wim_model_using_bert import ask_wim_model
+from wim_model_using_llama2 import ask_wim_model
 
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -59,14 +58,10 @@ def search_response(chatbot, question):
     print(processed_question)
 
     # Le pregunto a mi modelo si es correcta o no la pregunta en funcion de mi personaje elegido
-    return ask_model_for_this(question, chatbot)
-
-    # return "I'm sorry, I don't understand the question."
-
-def ask_model_for_this(question, chatbot):
-    answer = ask_wim_model(question, chatbot['my_character'])
-
-    return answer
+    # Tengo que encontrar la forma de pasar los atributos de mi personaje elegido a una oracion como la que esta abajo.
+    #  "eye_color","face_color", "hair_color", "glasses", "glasses_color", "eyebrow_width"
+    character = "eye color is green, face color is black, hair color is blue, i have glasses, my glasses color is black"
+    return ask_wim_model(question, character)
 
 # Main function
 def run_chat():

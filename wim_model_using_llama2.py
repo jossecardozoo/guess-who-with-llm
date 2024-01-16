@@ -1,15 +1,28 @@
-from transformers import pipeline
+import replicate
 
-def get_model():
-    # Cargar el modelo BERT preentrenado
-    question_answering = pipeline('question-answering', model='bert-base-uncased', tokenizer='bert-base-uncased')
-
-    return question_answering
-
-def ask_wim_model(question, my_character):
-    # La idea es que yo le paso al modelo la pregunta, el me indica de que atributo estamos preguntando, y que valor se dice que tiene
-    # y aca comparo ese atributo con el del character para ver si concide.
-    question_answering = get_model()
-    answer = question_answering(question=question, context=my_character)
+########################### LLAMA2 WITH REPLICATE #############################
+def ask_wim_model(question, character):
+    answer = answering(question, character)
     return answer
 
+def answering(question, character):
+# The meta/llama-2-70b-chat model can stream output as it's running.
+    model_version = "meta/llama-2-70b-chat"
+
+    for event in replicate.stream(
+        model_version,
+        input={
+            "debug": False,
+            "top_k": 50,
+            "top_p": 1,
+            "prompt": f"Pleas answer this question about the character: {question}",
+            "temperature": 0.5,
+            "system_prompt": f"You are a helpful, respectful and honest assistant. You have this phisical attributes: {character}. You have to answer the question without reveling the correct value of the attributes",
+            "max_new_tokens": 10,
+            "min_new_tokens": -1
+        },
+    ):
+        print(str(event), end="")
+
+# character = "eye color is green, face color is black, hair color is blue, i have glasses, my glasses color is black"
+# answering("Are your eyes green?",character)
