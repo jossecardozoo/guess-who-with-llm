@@ -24,6 +24,14 @@ def process_file(file_path):
 
     return data
 
+def mapping_int_values_with_string(attribute_name, value):
+    # Ruta a donde estan el mapeo de cada valor numerico por cada valor en texto
+    json_file_path = 'all_my_values_mapping_attributes.json'
+    with open(json_file_path, 'r') as json_file:
+        data = json.load(json_file)
+
+    return data[attribute_name][value]
+
 # Directorio que contiene tus archivos
 directory = os.path.abspath('/Users/anaclara/Desktop/Fing/Tesis/DataSet/cartoonset10k')
 
