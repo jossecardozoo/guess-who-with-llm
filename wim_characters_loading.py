@@ -1,6 +1,5 @@
 import os
 import json
-import random
 
 # Función para procesar un archivo con el formato proporcionado
 def process_file(file_path):
@@ -14,23 +13,22 @@ def process_file(file_path):
         # Separar la línea en atributo y valor
         attribute_name, value, _amount_of_values = line.strip().split(', ')
         attribute_name = attribute_name.replace('"', '')
-        # aca en vez de hacer int(valor) ya hacer el mapeo con una funcion a definir para ya tener todo en strings en mi mega json
-        value = int(value)
 
         # Solo guardar los atributos que me interesan
         if attribute_name in ["eye_color","face_color", "hair_color", "glasses", "glasses_color", "eyebrow_width"]:
             # Agregar al diccionario
-            data[attribute_name] = value
+            string_value = mapping_int_values_with_string(attribute_name, value)
+            data[attribute_name] = string_value
 
     return data
 
 def mapping_int_values_with_string(attribute_name, value):
-    # Ruta a donde estan el mapeo de cada valor numerico por cada valor en texto
+    # Ruta a donde esta el mapeo de cada valor numerico por cada valor en texto
     json_file_path = 'all_my_values_mapping_attributes.json'
     with open(json_file_path, 'r') as json_file:
         data = json.load(json_file)
 
-    return data[attribute_name][value]
+    return data[str(attribute_name)][str(value)]
 
 # Directorio que contiene tus archivos
 directory = os.path.abspath('/Users/anaclara/Desktop/Fing/Tesis/DataSet/cartoonset10k')

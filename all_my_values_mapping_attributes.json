@@ -55,8 +55,8 @@
     "6": "pink"
   },
   "eyebrow_width": {
-    "0": "robustas",
-    "1": "medianas",
-    "2": "finas"
+    "0": "thick",
+    "1": "normal",
+    "2": "thin"
   }
 }
