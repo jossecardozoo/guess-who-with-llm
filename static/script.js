@@ -1,28 +1,12 @@
-// function sendMessage() {
-//     var userInput = document.getElementById("userInput").value;
-
-//     fetch('/ask', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({ question: userInput }),
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         var chatbox = document.getElementById("chatbox");
-//         chatbox.innerHTML += "<p>Chatbot: " + data.response + "</p>";
-//     })
-//     .catch(error => {
-//         console.error('Error:', error);
-//     });
-
-//     // Limpiar el campo de entrada
-//     document.getElementById("userInput").value = "";
-// }
+// Agrega un event listener para el evento 'keypress' en el campo de entrada
+document.getElementById("userInput").addEventListener("keypress", function(event) {
+    // Verifica si la tecla presionada es 'Enter' (código 13)
+    if (event.key === "Enter") {
+        sendMessage(); // Llama a la función para enviar el mensaje
+    }
+});
 
 function startGame() {
-    console.log("holaaaaaa");
     document.getElementById("inputArea").style.display = "block";
 
     fetch('/start_game')
@@ -37,8 +21,7 @@ function startGame() {
 
 function sendMessage() {
     var userInput = document.getElementById("userInput").value;
-    console.log("llegue la sendmessage");
-    console.log(userInput)
+    addQuestion(userInput); // Agrega la pregunta del usuario al chatbox
 
     fetch('/ask', {
         method: 'POST',
@@ -49,8 +32,7 @@ function sendMessage() {
     })
     .then(response => response.json())
     .then(data => {
-        var chatbox = document.getElementById("chatbox");
-        chatbox.innerHTML += "<p>Chatbot: " + data.response + "</p>";
+        addResponse(data.response); // Agrega la respuesta del chatbot al chatbox
     })
     .catch(error => {
         console.error('Error:', error);
@@ -58,4 +40,14 @@ function sendMessage() {
 
     // Limpiar el campo de entrada
     document.getElementById("userInput").value = "";
+}
+
+function addQuestion(question) {
+    var chatbox = document.getElementById("chatbox");
+    chatbox.innerHTML += "<p>You: " + question + "</p>";
+}
+
+function addResponse(response) {
+    var chatbox = document.getElementById("chatbox");
+    chatbox.innerHTML += "<p>Chatbot: " + response + "</p>";
 }
