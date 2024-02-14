@@ -13,6 +13,7 @@ function startGame() {
     .then(response => response.text())
     .then(data => {
       console.log(data); // Imprimirá el resultado de la función en la consola del navegador
+      loadImages(); // Llama a la función para cargar las imágenes
     })
     .catch(error => {
       console.error('Error:', error);
@@ -50,4 +51,26 @@ function addQuestion(question) {
 function addResponse(response) {
     var chatbox = document.getElementById("chatbox");
     chatbox.innerHTML += "<p>Chatbot: " + response + "</p>";
+}
+
+// Función para cargar las imágenes desde el backend
+function loadImages() {
+    fetch('/get_image_paths')
+    .then(response => response.json())
+    .then(imagePaths => {
+        var imageGallery = document.getElementById("imageGallery");
+        imagePaths.forEach((imagePath, index) => {
+            var img = document.createElement("img");
+            img.src = imagePath;
+
+            var gridItem = document.createElement("div");
+            gridItem.className = "grid-item";
+            gridItem.appendChild(img);
+
+            imageGallery.appendChild(gridItem);
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }

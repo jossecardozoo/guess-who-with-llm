@@ -14,7 +14,16 @@ def index():
 def start_game():
     global chatbot_config
     chatbot_config = configure_chat()  # Guarda la configuración del chatbot en la variable global
+
     return jsonify({'message': 'El juego ha comenzado.'})
+
+@app.route('/get_image_paths', methods=['GET'])
+def get_image_paths():
+    global chatbot_config
+    # Extrae los valores de 'image_file' de cada candidato y los coloca en un array
+    image_paths = ['/static/images/{}.png'.format(str(candidate_info['image_file'])) for candidate_info in chatbot_config['my_group_of_chars'].values()]
+
+    return jsonify(image_paths)
 
 @app.route('/ask', methods=['POST'])
 def ask():

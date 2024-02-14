@@ -36,7 +36,6 @@ def configure_chat():
     chatbot['my_group_of_chars'] = my_group_of_characters
     chatbot['my_character'] = random_element_code
     chatbot['my_character_attributes'] = data[random_element_code]
-    del  chatbot['my_character_attributes']['image_file']
 
     chatbot['my_character_in_one_line'] = character_attributes_in_a_sentence(chatbot['my_character_attributes'])
     print (chatbot['my_character_in_one_line'])

@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot UI</title>
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
-    <h1>Chatbott</h1>
-    <button onclick="startGame()">Comenzar juego</button>
-    <div id="chatbox"></div>
-    <div id="inputArea" style="display: none;">
-        <input type="text" id="userInput" placeholder="Ask about my character...">
-        <button onclick="sendMessage()">Send</button>
+    <div class="container">
+        <!-- Barra lateral del chat -->
+        <div class="sidebar">
+            <h1>Chatbot</h1>
+            <button onclick="startGame()">Comenzar juego</button>
+            <div id="chatbox"></div>
+            <div id="inputArea" style="display: none;">
+                <input type="text" id="userInput" placeholder="Ask about my character...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
+        <!-- Contenedor para las imágenes -->
+        <div class="grid" id="imageGallery"></div>
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
