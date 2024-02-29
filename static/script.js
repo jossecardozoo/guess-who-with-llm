@@ -1,6 +1,6 @@
 // Agrega un event listener para el evento 'keypress' en el campo de entrada
 document.getElementById("userInput").addEventListener("keypress", function(event) {
-    // Verifica si la tecla presionada es 'Enter' (código 13)
+    // Verifica si la tecla presionada es 'Enter'
     if (event.key === "Enter") {
         sendMessage(); // Llama a la función para enviar el mensaje
     }
@@ -62,6 +62,7 @@ function loadImages() {
         imagePaths.forEach((imagePath, index) => {
             var img = document.createElement("img");
             img.src = imagePath;
+            img.className = "clickable";
 
             var gridItem = document.createElement("div");
             gridItem.className = "grid-item";
@@ -69,6 +70,16 @@ function loadImages() {
 
             imageGallery.appendChild(gridItem);
         });
+
+        // Listener de clics para que se desactiven los characters a volutad del usuario
+        var images = document.querySelectorAll('.clickable');
+        images.forEach(function(image) {
+            image.addEventListener('click', function() {
+                console.log("Pude hacerle click");
+                image.className = "no-my-character";
+            });
+        });
+
     })
     .catch(error => {
         console.error('Error:', error);
