@@ -61,3 +61,41 @@ body {
     opacity: 0.5; /* Opacidad reducida para dar la sensación de que están "deshabilitadas" */
     cursor: not-allowed; /* Cursor de no permitido para indicar que no se pueden hacer clic */
 }
+
+/* Estilos del modal para reiniciar el juego */
+/* El modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Se muestra arriba del contenido */
+    z-index: 1; /* Ubicado arriba del contenido */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    overflow: auto; /* Hace que el contenido se pueda desplazar */
+    background-color: rgba(0,0,0,0.4); /* Fondo oscuro */
+  }
+
+  /* Contenido del modal */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Ubicado en el centro */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  /* Botón para cerrar el modal */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }

@@ -23,6 +23,16 @@
         <div class="grid" id="imageGallery"></div>
     </div>
 
+    <!-- Modal para volver a jugar -->
+    <div id="gameOverModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Game Over</p>
+            <p>¿Deseas jugar de nuevo?</p>
+            <button id="playAgainButton">Si</button>
+        </div>
+    </div>
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
