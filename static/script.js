@@ -77,6 +77,24 @@ function loadImages() {
             image.addEventListener('click', function() {
                 console.log("Pude hacerle click");
                 image.className = "no-my-character";
+
+                // Enviar una solicitud POST al backend con el src de la imagen
+                var src = image.getAttribute('src');
+                fetch('/image_clicked', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ src: src }),
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data); // Imprimirá el resultado de la función en la consola del navegador
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
             });
         });
 

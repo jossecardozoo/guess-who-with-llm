@@ -3,6 +3,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
 import json
+import os
 import random
 from wim_model_using_llama2 import ask_wim_model
 
@@ -93,6 +94,20 @@ def filter_candidates(candidates, criteria, include_matching=True):
 
     return filtered_candidates
 
+def eliminate_candidate(chatbot, image_path):
+    candidate_to_eliminate = os.path.basename(image_path).split('.')[0]
+    # print(candidate_to_eliminate)
+    # print(chatbot['my_group_of_chars'])
+    chatbot['my_group_of_chars'].pop(candidate_to_eliminate)
+
+    print("sin el elemento a eliminar")
+    print(chatbot['my_character'])
+
+    status = "Continue"
+    if candidate_to_eliminate == chatbot['my_character']:
+        status = "Game over"
+
+    return chatbot, status
 
 # Main function
 def run_chat():

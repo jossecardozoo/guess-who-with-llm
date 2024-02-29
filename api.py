@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, render_template
-from wim_simple_chat import search_response, configure_chat  # Importa la función de tu chatbot
+from wim_simple_chat import search_response, configure_chat, eliminate_candidate  # Importa la función de tu chatbot
 
 app = Flask(__name__)
 
@@ -34,6 +34,18 @@ def ask():
     user_question = request.json['question']
     bot_response = search_response(chatbot_config, user_question)  # Usa la función de tu chatbot para obtener la respuesta
     return jsonify({'response': bot_response})
+
+# Ruta para descartar candidatos
+@app.route('/image_clicked', methods=['POST'])
+def image_clicked():
+    global chatbot_config
+    # Obtener el src de la imagen desde el cuerpo de la solicitud
+    src = request.json['src']
+
+    new_chatbot_config, status = eliminate_candidate(chatbot_config, src)
+    chatbot_config = new_chatbot_config
+
+    return jsonify({'message': status})
 
 if __name__ == '__main__':
     app.run(debug=True)
