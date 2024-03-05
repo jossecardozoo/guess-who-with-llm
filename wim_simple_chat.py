@@ -27,7 +27,7 @@ def configure_chat():
         data = json.load(json_file)
 
     # Seleccionar nueve personajes, de los cuales elegire uno como el candidato
-    random_list_characters = random.sample(list(data.keys()), 9)
+    random_list_characters = random.sample(list(data.keys()), 8)
     my_group_of_characters = {key: data[key] for key in random_list_characters if key in data}
 
     # Seleccionar un personaje aleatorio del diccionario

@@ -68,6 +68,14 @@ function loadImages() {
             gridItem.className = "grid-item";
             gridItem.appendChild(img);
 
+            // Agregar botón para seleccionar como correcta
+            var selectButton = document.createElement("button");
+            selectButton.textContent = "You are the correct!";
+            selectButton.onclick = function() {
+                selectCharacter(imagePath);
+            };
+            gridItem.appendChild(selectButton);
+
             imageGallery.appendChild(gridItem);
         });
 
@@ -108,23 +116,32 @@ function loadImages() {
     });
 }
 
-// // Obtener el modal
-// var modal = document.getElementById("gameOverModal");
+// Funcion que selecciona la imagen como correcta
+function selectCharacter(imageUrl) {
+    // Lógica para marcar la imagen como seleccionada como correcta
+    fetch('/select_character', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ imageUrl: imageUrl }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // Imprimirá el resultado de la función en la consola del navegador
 
-// // Obtener el botón para cerrar el modal
-// var span = document.getElementsByClassName("close")[0];
-
-// // Cuando el usuario hace click en cualquier lugar fuera del modal, lo cierra
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
-
-// // Cuando el usuario hace click en el botón de cerrar, lo cierra
-// span.onclick = function() {
-//   modal.style.display = "none";
-// }
+        if (data.message == "Correct"){
+            var modal = document.getElementById('youWinModal');
+            modal.style.display = 'flex'; // Cambia la propiedad display para mostrar el modal
+        } else {
+            var modal = document.getElementById('continueModal');
+            modal.style.display = 'flex'; // Cambia la propiedad display para mostrar el modal
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
 
 // Cuando el usuario hace click en el botón de jugar de nuevo, lo cierra y reinicia el juego
 document.getElementById("playAgainButton").onclick = function() {
@@ -133,4 +150,18 @@ document.getElementById("playAgainButton").onclick = function() {
     modal.style.display = "none";
     // startGame();
     window.location.reload();
+}
+
+document.getElementById("winAgainButton").onclick = function() {
+    console.log("llegue al boton volver a jugar porq gane");
+    var modal = document.getElementById("youWinModal");
+    modal.style.display = "none";
+    // startGame();
+    window.location.reload();
+}
+
+// Cerra modal cuando elegi el personaje incorrecto
+function closeModal() {
+    var modal = document.getElementById("continueModal");
+    modal.style.display = "none";
 }

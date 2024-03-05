@@ -8,7 +8,7 @@ body {
 }
 
 .sidebar {
-    width: 30%;
+    width: 25%;
     padding: 20px;
     background-color: #f0f0f0;
 }
@@ -31,7 +31,7 @@ body {
 }
 
 .grid {
-    width: 70%;
+    width: 75%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
@@ -82,7 +82,9 @@ body {
     margin: 15% auto; /* Ubicado en el centro */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 60%; /* Reducir el ancho del contenido */
+    max-width: 400px; /* Establecer un ancho máximo */
+    height: 25%;
   }
 
   /* Botón para cerrar el modal */

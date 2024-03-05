@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 from wim_simple_chat import search_response, configure_chat, eliminate_candidate  # Importa la función de tu chatbot
+import os
 
 app = Flask(__name__)
 
@@ -46,6 +47,18 @@ def image_clicked():
     chatbot_config = new_chatbot_config
 
     return jsonify({'message': status})
+
+##### Mejorar este metodo para que no hagas cosas, sino que llame una funcion nomas
+@app.route('/select_character', methods=['POST'])
+def select_character():
+    global chatbot_config
+    image_url = request.json['imageUrl']
+
+    selected_char = os.path.basename(image_url).split('.')[0]
+    is_the_correct = "Correct" if selected_char == chatbot_config['my_character'] else "Incorrect"
+    # is_the_correct = eliminate_candidate(chatbot_config, imageUrl)
+
+    return jsonify({'message': is_the_correct})
 
 if __name__ == '__main__':
     app.run(debug=True)
