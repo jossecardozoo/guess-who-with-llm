@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, render_template
-from wim_simple_chat import search_response, configure_chat, eliminate_candidate  # Importa la función de tu chatbot
+from wim_simple_chat import configure_chat, search_response, eliminate_candidate
 import os
 
 app = Flask(__name__)
