@@ -91,24 +91,6 @@ def search_response(chatbot, question):
     # Le pregunto a mi modelo si es correcta o no la pregunta en funcion de mi personaje elegido
     return ask_wim_model(question, chatbot['my_character_in_one_line'])
 
-def find_criteria_by_question_and_aswer(user_question, bot_answer):
-    criteria = {"eye_color": "green"}
-
-    return criteria, True
-
-def filter_candidates(candidates, criteria, include_matching=True):
-    filtered_candidates = {}
-
-    for candidate_id, attributes in candidates.items():
-        meets_criteria = all(attributes.get(attribute, "") == value for attribute, value in criteria.items())
-
-        if include_matching and meets_criteria:
-            filtered_candidates[candidate_id] = attributes
-        elif not include_matching and not meets_criteria:
-            filtered_candidates[candidate_id] = attributes
-
-    return filtered_candidates
-
 def eliminate_candidate(chatbot, image_path):
     candidate_to_eliminate = os.path.basename(image_path).split('.')[0]
     # print(candidate_to_eliminate)
@@ -124,27 +106,45 @@ def eliminate_candidate(chatbot, image_path):
 
     return chatbot, status
 
+# def find_criteria_by_question_and_aswer(user_question, bot_answer):
+#     criteria = {"eye_color": "green"}
+
+#     return criteria, True
+
+# def filter_candidates(candidates, criteria, include_matching=True):
+#     filtered_candidates = {}
+
+#     for candidate_id, attributes in candidates.items():
+#         meets_criteria = all(attributes.get(attribute, "") == value for attribute, value in criteria.items())
+
+#         if include_matching and meets_criteria:
+#             filtered_candidates[candidate_id] = attributes
+#         elif not include_matching and not meets_criteria:
+#             filtered_candidates[candidate_id] = attributes
+
+#     return filtered_candidates
+
 # Main function
-def run_chat():
-    print("Hello! Let's start playing. Type 'goodbye' to exit.")
+# def run_chat():
+#     print("Hello! Let's start playing. Type 'goodbye' to exit.")
     
-    chatbot = configure_chat()
+#     chatbot = configure_chat()
 
-    while True:
-        user_question = input("Ask about my character: ")
+#     while True:
+#         user_question = input("Ask about my character: ")
 
-        if user_question.lower() == 'goodbye':
-            print("Goodbye. Have a great day!")
-            break
+#         if user_question.lower() == 'goodbye':
+#             print("Goodbye. Have a great day!")
+#             break
 
-        bot_response = search_response(chatbot, user_question)
-        # Luego de obtener la respuesta, es aca donde deberia eliminar candidatos
-        # print(chatbot['my_group_of_chars'])
-        # criteria = {"eye_color": "green"} tiene que ser algo asi lo retorne mi funcion
-        criteria, positive_or_negative_matching = find_criteria_by_question_and_aswer(user_question, bot_response)
-        filtered_candidates = filter_candidates(chatbot['my_group_of_chars'], criteria, include_matching=positive_or_negative_matching)
-        # print(filtered_candidates)
-        print(bot_response)
+#         bot_response = search_response(chatbot, user_question)
+#         # Luego de obtener la respuesta, es aca donde deberia eliminar candidatos
+#         # print(chatbot['my_group_of_chars'])
+#         # criteria = {"eye_color": "green"} tiene que ser algo asi lo retorne mi funcion
+#         criteria, positive_or_negative_matching = find_criteria_by_question_and_aswer(user_question, bot_response)
+#         filtered_candidates = filter_candidates(chatbot['my_group_of_chars'], criteria, include_matching=positive_or_negative_matching)
+#         # print(filtered_candidates)
+#         print(bot_response)
 
-if __name__ == "__main__":
-    run_chat()
+# if __name__ == "__main__":
+#     run_chat()
