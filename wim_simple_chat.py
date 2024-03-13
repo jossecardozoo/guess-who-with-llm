@@ -83,11 +83,8 @@ def character_attributes_in_a_sentence(attributes_in_json):
 
     return sentence
 
-# preguntarle al modelo la respuesta con la pregunta ya preprocesada
+# preguntarle al modelo la respuesta con la pregunta
 def search_response(chatbot, question):
-    # processed_question = preprocess_text(question)
-    # print(processed_question)
-
     # Le pregunto a mi modelo si es correcta o no la pregunta en funcion de mi personaje elegido
     return ask_wim_model(question, chatbot['my_character_in_one_line'])
 
