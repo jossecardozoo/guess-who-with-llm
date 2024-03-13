@@ -83,21 +83,6 @@ def character_attributes_in_a_sentence(attributes_in_json):
 
     return sentence
 
-# preprocesar la pregunta para que me quede todo como un conjunto de palabras -> CAPAZ NO ES NECESARIO HACERLO
-def preprocess_text(question):
-    # Tokenizar
-    words = word_tokenize(question.lower())
-
-    # Sacar las stopwords
-    stop_words = set(stopwords.words("english"))
-    words = [word for word in words if word.isalnum() and word not in stop_words]
-
-    # Stemming
-    stemmer = PorterStemmer()
-    words = [stemmer.stem(word) for word in words]
-
-    return words
-
 # preguntarle al modelo la respuesta con la pregunta ya preprocesada
 def search_response(chatbot, question):
     # processed_question = preprocess_text(question)
