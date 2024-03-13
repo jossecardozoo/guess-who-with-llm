@@ -7,9 +7,6 @@ import os
 import random
 from wim_model_using_llama2 import ask_wim_model
 
-nltk.download('punkt')
-nltk.download('stopwords')
-
 # Configurar el chat
 def configure_chat():
     chatbot = {}
@@ -26,9 +23,19 @@ def configure_chat():
     with open(json_file_path, 'r') as json_file:
         data = json.load(json_file)
 
-    # Seleccionar nueve personajes, de los cuales elegire uno como el candidato
-    random_list_characters = random.sample(list(data.keys()), 8)
-    my_group_of_characters = {key: data[key] for key in random_list_characters if key in data}
+    all_characters_are_different = False
+    share_attributes = False
+    random_list_characters = []
+    my_group_of_characters = {}
+
+    while not (all_characters_are_different and share_attributes):
+        # Seleccionar un numero de personajes, de los cuales elegire uno como el candidato
+        random_list_characters = random.sample(list(data.keys()), 8)
+        my_group_of_characters = {key: data[key] for key in random_list_characters if key in data}
+        # Verifico que sean todos diferentes entre si
+        all_characters_are_different = are_different_from_each_other(my_group_of_characters)
+        # Verifico que por lo menos un par de personajes tengas dos atributos iguales
+        share_attributes = have_shared_attributes(my_group_of_characters)
 
     # Seleccionar un personaje aleatorio del diccionario
     random_element_code = random.choice(random_list_characters)
@@ -42,6 +49,29 @@ def configure_chat():
     print (chatbot['my_character_in_one_line'])
 
     return chatbot
+
+def are_different_from_each_other(characters):
+    for character_id, attributes in characters.items():
+        for other_character_id, other_attributes in characters.items():
+            if character_id != other_character_id:
+                # Chequeo que por lo menos un atributo sea distinto
+                if not any(attributes[attribute] != other_attributes[attribute] for attribute in attributes):
+                    return False
+    return True
+
+def have_shared_attributes(characters):
+    for character_id, attributes in characters.items():
+        for other_character_id, other_attributes in characters.items():
+            if character_id != other_character_id:
+                shared_count = 0
+                # Comparo los atributos de los personajes
+                for attribute in attributes:
+                    if attributes[attribute] == other_attributes.get(attribute):
+                        shared_count += 1
+                # Chequeo si comparten por lo menos 2 atributos
+                if shared_count >= 2:
+                    return True
+    return False
 
 def character_attributes_in_a_sentence(attributes_in_json):
     sentence = f"The person has {attributes_in_json['eye_color']} eyes, {attributes_in_json['face_color']} skin, and {attributes_in_json['hair_color']} hair."
