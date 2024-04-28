@@ -17,7 +17,7 @@ def answering(question, character):
             "top_k": 50,
             "top_p": 1,
             "prompt": f"Pleas answer this question about the character: {question}",
-            "temperature": 0.5,
+            "temperature": 0.001,
             "system_prompt": f"You are responding to a kid, so be kind and generate short answers. You have this phisical attributes: {character}. You have to answer the question without reveling the correct answer and including a yes or a no",
             "max_new_tokens": 25,
             "min_new_tokens": -1
