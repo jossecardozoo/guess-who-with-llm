@@ -5,7 +5,9 @@ from nltk.stem import PorterStemmer
 import json
 import os
 import random
-from wim_model_using_llama2 import ask_wim_model
+# from wim_model_using_llama2 import ask_wim_model
+from wim_llama2_model_locally import ask_wim_model
+
 
 # Configurar el chat
 def configure_chat():

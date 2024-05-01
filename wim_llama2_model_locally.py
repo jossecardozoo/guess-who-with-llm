@@ -6,30 +6,18 @@ def ask_wim_model(question, character):
     return answer
 
 def answering(question, character):
-    model_version = "llama2"    
+    model_version = "wim_model_llama2:13b"
     answer = ""
 
     answer =ollama.generate(
         model= model_version,
+        # system=f"You are responding to a kid, so be kind and generate short answers. You have to answer the question with a yes or a no, without reveling the correct answer",
         prompt=f"Assume that you are this person: {character}.Pleas answer this question about you: {question}",
-        system=f"You are responding to a kid, so be kind and generate short answers. You have to answer the question only with a yes or a no",
-
-        options={
-            "top_k": 20,
-            "top_p": 0.8,
-            "temperature": 0.001,
-        }
-        # input={
-        #     "debug": False,
-        #     "top_k": 50,
-        #     "top_p": 1,
-        #     "prompt": f"Pleas answer this question about the character: {question}",
+        # options={
+        #     "top_k": 20,
+        #     "top_p": 0.7,
         #     "temperature": 0.001,
-        #     "system_prompt": f"You are responding to a kid, so be kind and generate short answers. You have this phisical attributes: {character}. You have to answer the question only with a yes or a no",
-        #     "max_new_tokens": 25,
-        #     "min_new_tokens": -1,
-        #     # "length_penalty":0.1
-        # },
+        # }
     )
 
     print(answer)
