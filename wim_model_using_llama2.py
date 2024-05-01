@@ -18,7 +18,7 @@ def answering(question, character):
             "top_p": 1,
             "prompt": f"Pleas answer this question about the character: {question}",
             "temperature": 0.001,
-            "system_prompt": f"You are responding to a kid, so be kind and generate short answers. You have this phisical attributes: {character}. You have to answer the question without reveling the correct answer and including a yes or a no",
+            "system_prompt": f"You are responding to a kid, so be kind and generate short answers. You have this phisical attributes: {character}. You have to answer the question only with a yes or a no",
             "max_new_tokens": 25,
             "min_new_tokens": -1
         },
@@ -26,7 +26,9 @@ def answering(question, character):
         # print(str(event), end="")
         answer = answer + str(event) + ""
 
-    return answer
+    # Por alguna razon el modelo retorna parte de la respuesta anterior. Esto es provisorio para solo obtener la ultima respuesta
+    answer_words = answer.split()
+    return answer_words[-1]
 
 # character = "eye color is green, face color is black, hair color is blue, i have glasses, my glasses color is black"
 # answering("Are your eyes green?",character)
