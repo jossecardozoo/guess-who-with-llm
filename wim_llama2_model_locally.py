@@ -14,5 +14,4 @@ def answering(question, character):
         prompt=f"Assume that you are this person: {character}. Please answer this question about you: {question}",
     )
 
-    print(answer)
     return answer['response']
