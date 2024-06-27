@@ -24,9 +24,6 @@ increments = {
 for attribute, limit in increments.items():
     initial_json[attribute] = {str(i): "algo" for i in range(limit + 1)}
 
-# Imprimir el JSON actualizado
-print(initial_json)
-
 # Para guardar en un archivo JSON
 json_output = json.dumps(initial_json,indent=2)
 
