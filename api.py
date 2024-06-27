@@ -56,7 +56,6 @@ def select_character():
 
     selected_char = os.path.basename(image_url).split('.')[0]
     is_the_correct = "Correct" if selected_char == chatbot_config['my_character'] else "Incorrect"
-    # is_the_correct = eliminate_candidate(chatbot_config, imageUrl)
 
     return jsonify({'message': is_the_correct})
 
