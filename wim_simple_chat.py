@@ -86,9 +86,6 @@ def eliminate_candidate(chatbot, image_path):
     candidate_to_eliminate = os.path.basename(image_path).split('.')[0]
     chatbot['my_group_of_chars'].pop(candidate_to_eliminate)
 
-    print("sin el elemento a eliminar")
-    print(chatbot['my_character'])
-
     status = "Continue"
     if candidate_to_eliminate == chatbot['my_character']:
         status = "Game over"
