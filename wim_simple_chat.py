@@ -1,7 +1,3 @@
-import nltk
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-from nltk.stem import PorterStemmer
 import json
 import os
 import random
