@@ -6,7 +6,6 @@ def ask_wim_model(question, character):
     return answer
 
 def answering(question, character):
-# The meta/llama-2-70b-chat model can stream output as it's running.
     model_version = "meta/llama-2-70b-chat"
     answer = ""
 
@@ -23,14 +22,9 @@ def answering(question, character):
             "min_new_tokens": -1
         },
     ):
-        # print(str(event), end="")
         answer = answer + str(event) + ""
 
-    # Por alguna razon el modelo retorna parte de la respuesta anterior. Esto es provisorio para solo obtener la ultima respuesta
+    # Por alguna razon el modelo retorna parte de la respuesta anterior.
+    # Esto es para solo obtener la ultima respuesta, habria que mejorarlo
     answer_words = answer.split()
     return answer_words[-1]
-
-# character = "eye color is green, face color is black, hair color is blue, i have glasses, my glasses color is black"
-# answering("Are your eyes green?",character)
-
-# "system_prompt": "You are responding to a kid, so be kind and use simple lenguaje. You have this phisical attributes: {character}. You have to answer the question with yes or no",
