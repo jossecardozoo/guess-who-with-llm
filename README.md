@@ -22,7 +22,7 @@ python api.py
 
 ### 3. Comunicación con el Modelo
 Dependiendo de si deseas usar el modelo localmente o a través de Replicate, utiliza uno de los siguientes archivos:
-- `wim_llama2_model_locally.py`: Para uso local. Este archivo fue probado con Ollama.
+- `wim_llama2_model_locally.py`: Para uso local. Este archivo fue probado con [Ollama](https://ollama.com/library/llama2:13b).
 - `wim_llama2_model_replicate.py`: Para uso con Replicate. Para utilizar Replicate, es necesario crear una cuenta y obtener un token de autenticación. Más información para realizar esto se encuentra aquí: [Guía para Fine-Tune Llama-2 en Replicate](https://replicate.com/blog/fine-tune-llama-2).
 
 ### 4. Generar el Archivo de Personajes
