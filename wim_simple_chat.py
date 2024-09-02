@@ -2,7 +2,7 @@ import json
 import os
 import random
 # Dejar descomentado el import dependiendo de cual version del modelo quiero usar
-from wim_model_using_llama2 import ask_wim_model
+from wim_llama2_model_replicate import ask_wim_model
 # from wim_llama2_model_locally import ask_wim_model
 
 

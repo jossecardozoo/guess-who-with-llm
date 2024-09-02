@@ -27,4 +27,4 @@ def answering(question, character):
     # Por alguna razon el modelo retorna parte de la respuesta anterior.
     # Esto es para solo obtener la ultima respuesta, habria que mejorarlo
     answer_words = answer.split()
-    return answer_words[-1]
+    return answer_words
