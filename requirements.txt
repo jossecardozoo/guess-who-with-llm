@@ -1,0 +1,6 @@
+Flask==3.0.3
+ollama==0.1.9
+replicate==0.25.2
+json
+os
+random
