@@ -31,7 +31,7 @@ def mapping_int_values_with_string(attribute_name, value):
     return data[str(attribute_name)][str(value)]
 
 # Directorio que contiene tus archivos
-directory = os.path.abspath('/Users/anaclara/Desktop/Fing/Tesis/DataSet/cartoonset10k')
+directory = os.path.abspath('/cartoonset10k')
 
 # Obtener la lista de archivos en el directorio
 files = [file for file in os.listdir(directory) if file.endswith('.csv')]
