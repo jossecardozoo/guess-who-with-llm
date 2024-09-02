@@ -1,4 +1,6 @@
-# CodigoTesis
+# Versión del juego “Guess who?” usando un LLM
+Este documento presenta un primer prototipo del juego “Guess who?” implementado utilizando un modelo de lenguaje de gran tamaño (LLM). Este proyecto fue desarrollado como parte del trabajo final para el grado de Licenciatura en Computación.
+
 
 ## Requisitos
 
